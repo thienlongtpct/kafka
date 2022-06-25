@@ -3,6 +3,7 @@ import lab4.exchange.service.ExchangeGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -16,8 +17,13 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 30000)
     public void postWeather() {
         this.exchangeGenerate.update();
+    }
+
+    @KafkaListener(topics = "exchange-all", groupId = "group-1", containerFactory = "kafkaListenerContainerFactory")
+    public void listenTopicsExchangeAll(String info) {
+        System.out.println("Consume for exchange-all:" + info);
     }
 }

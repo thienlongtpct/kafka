@@ -7,5 +7,7 @@ lab4/exchange/config/KafkaTopicConfig.java
 lab4/exchange/service/ExchangeGenerate.java
  lab4.exchange.service.ExchangeGenerate
  lab4.exchange.service.ExchangeGenerate$ExchangeLog
+lab4/exchange/config/KafkaConsumerConfig.java
+ lab4.exchange.config.KafkaConsumerConfig
 lab4/exchange/Application.java
  lab4.exchange.Application

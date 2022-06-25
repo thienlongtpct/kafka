@@ -55,12 +55,6 @@ public class ExchangeGenerate {
         public Boolean call() {
             ExchangeInfo info = new ExchangeInfo(fromCurrency, toCurrency, rate, LocalDateTime.now());
             kafkaTemplate.send("exchange-all", info.getLog().format(DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss")), info);
-            if (fromCurrency.equals("RUB"))
-                kafkaTemplate.send("exchange-rub", info.getLog().format(DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss")), info);
-            if (fromCurrency.equals("USD"))
-                kafkaTemplate.send("exchange-usd", info.getLog().format(DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss")), info);
-            if (fromCurrency.equals("EUR"))
-                kafkaTemplate.send("exchange-eur", info.getLog().format(DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss")), info);
             System.out.println(info);
             return true;
         }
