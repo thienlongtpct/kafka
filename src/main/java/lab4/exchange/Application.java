@@ -21,9 +21,4 @@ public class Application {
     public void postWeather() {
         this.exchangeGenerate.update();
     }
-
-    @KafkaListener(topics = "exchange-all", groupId = "group-1", containerFactory = "kafkaListenerContainerFactory")
-    public void listenTopicsExchangeAll(String info) {
-        System.out.println("Consume for exchange-all:" + info);
-    }
 }
